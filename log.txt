@@ -1,0 +1,28 @@
+There are total 16 supported mouse buttons
+Allegro5 initialized
+Game begin
+loaded font: pirulen.ttf with size 32
+loaded font: pirulen.ttf with size 24
+Menu scene created
+Change scene from (unnamed) to Menu
+loaded image: main-bg.jpg
+resized image: main-bg.jpg
+loaded audio: S31-Night Prowler.ogg
+played audio (bgm)
+Menu scene initialized
+Game initialized
+Game start event loop
+Key with keycode 67 down
+Start scene created
+Change scene from Menu to Start
+stop audio (bgm)
+Menu scene destroyed
+loaded image: MapImage/linktothepast.jpg
+loaded image: MapImage/linktothepast.jpg
+resized image: MapImage/linktothepast.jpg
+loaded image: GUI/pause-button.png
+loaded image: GUI/play-button.png
+loaded image: GUI/pause-button2.png
+loaded image: GUI/play-button2.png
+loaded image: Character/plane.png
+failed to load image: Character/insector04.png
