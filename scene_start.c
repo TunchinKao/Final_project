@@ -1,5 +1,5 @@
 #include "scene_start.h"
-
+#include <math.h>
 // Variables and functions with 'static' prefix at the top level of a
 // source file is only accessible in that file ("file scope", also
 // known as "internal linkage"). If other files has the same variable
@@ -9,7 +9,15 @@
 
 // TODO: More variables and functions that will only be accessed
 // inside this scene. They should all have the 'static' prefix.
+#define STAGE_NUM 3
 extern float VOLUME;
+extern int MydraIndex;
+extern char characterlist[8][2][40];
+extern char enemylist[4][40];
+extern char bulletImglist[4][40];
+extern int planeAbility[8][4];
+
+int stageflag;
 static ALLEGRO_BITMAP* img_background;
 static ALLEGRO_BITMAP* img_plane;
 static ALLEGRO_BITMAP* img_enemy;
@@ -21,24 +29,51 @@ static ALLEGRO_BITMAP* pause_button2;
 static ALLEGRO_BITMAP* continue_button2;
 static ALLEGRO_BITMAP* pausing_cover;
 static ALLEGRO_BITMAP* originBitmap;
-const int bgConst = 150, bgConst2 = 200; // move to SCREEN_H - this // when y <= this
+static ALLEGRO_BITMAP* BOSS_img;
+static ALLEGRO_SAMPLE* fireball;
+static ALLEGRO_SAMPLE* fightingBGM;
+static ALLEGRO_SAMPLE* BossBGM;
+static ALLEGRO_SAMPLE* winningBGM;
+static ALLEGRO_SAMPLE* defeatBGM;
+static ALLEGRO_SAMPLE_ID ID_fireball;
+static ALLEGRO_SAMPLE_ID BGM;
+const int bgConst = 0, bgConst2 = 200; // move to SCREEN_H - this // when y <= this
+
 RecArea buttonArea;
 RecArea btMenuArea;
 RecArea btRestartArea;
 RecArea backbgArea;
+
 static bool is_pausing = false;
 static bool is_failed = false;
+static bool is_bossing = false;
 static bool is_winned = false;
+static bool renew = true;
+static bool first = true;
+static bool winfirst = true;
+static bool once_defeat = true;
 const float buttonrate = 0.1;
+
+static float dvx, dvy;
+static float timer;
 static float buttonWidth; // Original
 static float buttonHeight; // Original
 static float backImgHeight;
 static float backImgWidth;
 static float bg_x_velocity = 0;
 static float bg_y_velocity = -1.5;
+static float MyShootingCoolDown = 1.0f;
+static float BossShootingCoolDown = 1.25f;
 
+static float playertiemr = 0.0f;
+float health;
+
+static int enemy_Num[MAX_ENEMY];
 static void init(void) {
 	int i;
+	renew = first = winfirst = true;
+	is_pausing = is_failed = is_bossing = is_winned = false;
+	once_defeat = true;
 	originBitmap = load_bitmap("MapImage/linktothepast.jpg");
 	backImgHeight = al_get_bitmap_height(originBitmap);
 	backImgWidth = al_get_bitmap_width(originBitmap);
@@ -60,42 +95,106 @@ static void init(void) {
 	buttonHeight = al_get_bitmap_height(pause_button);
 	createRecArea(&buttonArea, 20, 20, al_get_bitmap_width(pause_button) * buttonrate, al_get_bitmap_height(pause_button) * buttonrate);
 
-
-	img_plane = Myplane.img = load_bitmap("Character/plane.png");
-	Myplane.x = 400;
-	Myplane.y = 500;
-	Myplane.w = al_get_bitmap_width(Myplane.img);
-	Myplane.h = al_get_bitmap_height(Myplane.img);
-	Myplane.hidden = false;
-	My_Bullet_Type = 0;
-	MyHealth = 100;
+	img_plane= load_bitmap(characterlist[MydraIndex][0]);
+	int mycoliw = 25, mycolih = 15;
+	health = 200.0f * planeAbility[MydraIndex][0] / 2;
+	buildplane(&Myplane, img_plane,health, 0, 0, mycoliw, mycolih, MyShootingCoolDown, 0, 0);
+	Myplane.Data.x = 400;
+	Myplane.Data.y = 500;
+	Myplane.sourceX = 0;
+	Myplane.sourceY = 3;
+	Myplane.Data.hidden = false;
 	SCORE = 0;
+	
+	stageflag = 0;
+
+	BOSS_img = load_bitmap_resized(characterlist[MydraIndex][1],600,600);
+	int BOSScoliw = 30, BOSScolih = 30, BOSShealth = BOSS_HEALTH;
+	buildplane(&BOSS, BOSS_img,BOSShealth, 3, 0, BOSScoliw, BOSScolih, BossShootingCoolDown,3, 500);
+	BOSS.Data.x = SCREEN_W / 2 - al_get_bitmap_width(BOSS_img) / 2;
+	BOSS.Data.y = -300;
+	BOSS.Data.hidden = true;
+	//BOSS_img = load_bitmap(characterlist[MydraIndex][1], 200, 250);
+	//for (int i = 0; i < BOSS_SKILL_NUM; i++) {
+
+	//	buildplane(&boss_skill_plane[i],BOSS_img, BOSShealth, 0, 0, BOSScoliw, BOSScolih, BossShootingCoolDown, 3, 0);
+	//	boss_skill_plane[i].Data.y = -100;
+	//	boss_skill_plane[i].Data.x = -100;
+	//}
+
+
 
 	img_enemy_bullet = al_load_bitmap("image12.png");
 	for (int j = 0; j < ENEMY_TYPES; j++) {
-		img_enemy = load_bitmap("Character/insect/insector04.png");
-		for (i = 0; i < MAX_ENEMY; i++) {
-			buildplane(&enemy_plane[j][i], img_enemy, 0, 3, 1);
+		float health = 100.0f, vx = 0.0f, vy = 0.0f, shootingcooldown = 1.0f;
+		int dcollisionw = 0, dcollisionh = 0, shootingBulletType = 1, prize = 10;
+		if (j == 0) {
+			img_enemy = load_bitmap(enemylist[3]);
+			health = 40.0f;
+			shootingcooldown = 1.5f;
+			shootingBulletType = 1;
+			prize = 10;
 		}
+		else if (j == 1) {
+			img_enemy = load_bitmap(enemylist[1]);
+			health = 80.0f;
+			vx = 2.0f;
+			vy =	0.25f;
+			shootingcooldown = 5.0f;
+			shootingBulletType = 2;
+			prize = 25;
+		}
+		else if (j == 2) {
+			dcollisionh = 0;
+			dcollisionw = 0;
+		}
+		for (i = 0; i < MAX_ENEMY; i++) {
+			
+				buildplane(&enemy_plane[j][i], img_enemy, health, vx, vy,dcollisionw,dcollisionh,shootingcooldown, shootingBulletType, prize);
+		}
+	}
+	for (int i = 0; i < MAX_ENEMY; i++) {
+		enemy_plane[1][i].health = 100.0f;
+		enemy_plane[1][i].Data.vy = 0.75f;
+		enemy_plane[1][i].shootingCoolDown = 2.0f;
+		enemy_plane[1][i].shootingBulletType = 2;
 	}
 	// Initialize bullets.
 	for (int j = 0; j < BULLET_TYPES; j++) {
-		img_bullet = al_load_bitmap("image12.png");
+		float damage = 10.0f, vx = 0.0f, vy = 0.0f;
+		int dcollisionw = 0, dcollisionh = 0;
+		img_bullet = al_load_bitmap(bulletImglist[j]);
+		if (j == 0) {
+			
+			vy = -3.0f;
+		}
+		else if (j == 1) {
+			vy = 3.0f;
+		}
+		else if (j == 2) {
+			vy = 1.5f;
+			damage = 15.0f;
+		}
+		else if (j == 2) {
+			vy = 4.0f;
+			damage = 25.0f;
+		}
 		for (int i = 0; i < MAX_BULLET; i++) {
-			bullets[j][i].Data.img = img_bullet;
-			bullets[j][i].Data.w = al_get_bitmap_width(img_bullet);
-			bullets[j][i].Data.h = al_get_bitmap_height(img_bullet);
-			bullets[j][i].Data.vx = 0;
-			bullets[j][i].Data.vy = -5;
-			bullets[j][i].Data.hidden = true;
-			bullets[j][i].damage = 10.0f;
+			buildbullet(&bullets[j][i], img_bullet, damage, vx, vy, dcollisionw, dcollisionw);
 		}
 	}
 	// Can be moved to shared_init to decrease loading time.
-	bgm = load_audio("mythica.ogg");
+
+	fightingBGM = load_audio("Music/Bgm/FightingBGM.ogg");
+	BossBGM = load_audio("Music/Bgm/BossBGM.ogg");
+	winningBGM = load_audio("Music/Bgm/winningBgm.ogg");
+	defeatBGM = load_audio("Music/Bgm/DeathBGM.ogg");
+	fireball = load_audio("Music/soundEffect/Fireball/fireball_1_fixed.ogg");
+	//bgm = load_audio("mythica.ogg");
 	game_log("Start scene initialized");
-	bgm_id = play_bgm(bgm, VOLUME);
-	//game_log("Plane: %d %d", Myplane.w, Myplane.y);
+	stop_bgm(BGM);
+	BGM = play_bgm(fightingBGM, VOLUME);
+	timer = al_get_time();
 }
 
 static void update(void) {
@@ -103,25 +202,25 @@ static void update(void) {
 		return;
 	update_BG_area(&backbgArea);
 	// My location Update
-	Myplane.vx = Myplane.vy = 0;
+
+	Myplane.Data.vx = Myplane.Data.vy = 0;
 	if (key_state[ALLEGRO_KEY_UP] || key_state[ALLEGRO_KEY_W])
-		Myplane.vy -= 1;
+		Myplane.Data.vy -= 1;
 	if (key_state[ALLEGRO_KEY_DOWN] || key_state[ALLEGRO_KEY_S])
-		Myplane.vy += 1;
+		Myplane.Data.vy += 1;
 	if (key_state[ALLEGRO_KEY_LEFT] || key_state[ALLEGRO_KEY_A]) {
-		Myplane.vx -= 1;
-		//bg_x_velocity -= 0.5;
+		Myplane.Data.vx -= 1;
 	}
 	if (key_state[ALLEGRO_KEY_RIGHT] || key_state[ALLEGRO_KEY_D]) {
-		Myplane.vx += 1;
-		//bg_x_velocity += 0.5;
+		Myplane.Data.vx += 1;
 	}
 
-	Myplane.y += Myplane.vy * 4 * (Myplane.vx ? 0.71f : 1); // 0.71 is (1/sqrt(2)).
-	Myplane.x += Myplane.vx * 4 * (Myplane.vy ? 0.71f : 1);
+	Myplane.Data.y += Myplane.Data.vy * 4 * (Myplane.Data.vx ? 0.71f : 1); // 0.71 is (1/sqrt(2)).
+	Myplane.Data.x += Myplane.Data.vx * 4 * (Myplane.Data.vy ? 0.71f : 1);
 	//game_log(" Position%f %f",Myplane.x, Myplane.y);
 	selfBounderCheck();
 	// Update bullets coordinates.
+	
 	for (int j = 0; j < BULLET_TYPES; j++) {
 		for (int i = 0; i < MAX_BULLET; i++) {
 			movOjBounederCheck(&(bullets[j][i].Data));
@@ -133,43 +232,107 @@ static void update(void) {
 		}
 	}
 	// update enemy
-	is_winned = true;
+	is_bossing = true;
 	for (int j = 0; j < ENEMY_TYPES; j++)
 		for (int i = 0; i < MAX_ENEMY; i++) {
+			
 			if (enemy_plane[j][i].Data.hidden)
 				continue;
+			movOjBounederCheck(&enemy_plane[j][i].Data);
 			if (enemy_plane[j][i].health <= 0) {
 				enemy_plane[j][i].Data.hidden = true;
 				SCORE += enemy_plane[j][i].prize;
 				continue;
 			}
 			
-			is_winned = false;
+			is_bossing = false;
 			changePlaneImg(&enemy_plane[j][i]);
-			smallPlaneScript(&enemy_plane[j][i]);
+			if (j == 0) {
+				smallPlaneScript(&enemy_plane[j][i]);
+				shootingScript(&enemy_plane[j][i]);
+			}
+			else if (j == 1) {
+				secondPlaneScript(&enemy_plane[j][i]);
+				secondShootScript(&enemy_plane[j][i]);
+			}
 			changePlanePosition(&enemy_plane[j][i]);
-			shootingScript(&enemy_plane[j][i]);
+			if (MovableObjectCollision(enemy_plane[j][i].Data, Myplane.Data)) {
+				Myplane.health -= 5;
+			}
 		}
+	if (is_bossing) {
+		
+		if (first) {
+			BOSS.Data.y = -300;
+			BOSS.Data.vx = 3;
+			BOSS.Data.hidden = false;
+			first = false;
+			stop_bgm(BGM);
+
+			BGM =  play_bgm(BossBGM,VOLUME);
+		}
+		if (BOSS.health <= 0.0f && winfirst) {
+			stop_bgm(BGM);
+			BGM = play_bgm(winningBGM,VOLUME);
+			BOSS.Data.hidden = true;
+			SCORE += BOSS.prize;
+			float now = al_get_time();
+			SCORE += 20000 / (now - timer);
+			is_bossing = false;
+			is_winned = true;
+			winfirst = false;
+		}
+		else{
+			changePlaneImg(&BOSS);
+			BossmovementScript(&BOSS);
+			changePlanePosition(&BOSS);
+			if (MovableObjectCollision(BOSS.Data, Myplane.Data)) {
+				Myplane.health -= 10;
+			}
+			BossshootingScript(&BOSS);
+			//BossSkillScript(&BOSS);
+			/*for (int i = 0; i < BOSS_SKILL_NUM; i++) {
+				changePlanePosition(&boss_skill_plane[i]);
+				changePlaneImg(&boss_skill_plane[i]);
+				if (MovableObjectCollision(boss_skill_plane[i].Data, Myplane.Data) ){
+					Myplane.health -= 10;
+				}
+			}*/
+		}
+	}
 	all_bullet_planes_collision_check();
+	changePlaneImg(&Myplane);
 	double now = al_get_time();
 	int i;
 	if ((mouse_state[1]) && now - last_shoot_timestamp >= MAX_COOLDOWN) {
 		for (i = 0; i < MAX_BULLET; i++) {
-			if (bullets[My_Bullet_Type][i].Data.hidden)
+			if (bullets[Myplane.shootingBulletType][i].Data.hidden)
 				break;
 		}
 		if (i < MAX_BULLET) {
 			last_shoot_timestamp = now;
-			bullets[My_Bullet_Type][i].Data.vy = -5;
-			bullets[My_Bullet_Type][i].Data.hidden = false;
-			bullets[My_Bullet_Type][i].Data.x = Myplane.x;
-			bullets[My_Bullet_Type][i].Data.y = Myplane.y + bullets[My_Bullet_Type][i].Data.h / 2;
-			bullets[My_Bullet_Type][i].whose = 1;
+			bullets[Myplane.shootingBulletType][i].Data.vy = -5;
+			bullets[Myplane.shootingBulletType][i].Data.hidden = false;
+			bullets[Myplane.shootingBulletType][i].Data.x = Myplane.Data.x;
+			bullets[Myplane.shootingBulletType][i].Data.y = Myplane.Data.y - Myplane.Data.h / 2;
+			bullets[Myplane.shootingBulletType][i].whose = 1;
+			stop_bgm(ID_fireball);
+			ID_fireball = play_audio(fireball, VOLUME);
 		}
+		
+			
+		
 	}
-	if (MyHealth <= 0) {
-		Myplane.hidden = true;
+
+	if (Myplane.health <= 0) {
+		Myplane.Data.hidden = true;
 		is_failed = true;
+		
+		if (once_defeat) {
+			stop_bgm(BGM);
+			BGM = play_bgm(defeatBGM, VOLUME);
+			once_defeat = false;
+		}
 	}
 
 }
@@ -177,10 +340,10 @@ static void update(void) {
 static void draw_movable_object(MovableObject obj) {
 	if (obj.hidden)
 		return;
-	al_draw_bitmap(obj.img, round(obj.x - obj.w / 2), round(obj.y - obj.h / 2), 0);
+	al_draw_bitmap(obj.img, round(obj.x - obj.collisionw / 2), round(obj.y - obj.collisionh / 2), 0);
 	if (draw_gizmos) {
-		al_draw_rectangle(round(obj.x - obj.w / 2), round(obj.y - obj.h / 2),
-			round(obj.x + obj.w / 2) + 1, round(obj.y + obj.h / 2) + 1, al_map_rgb(255, 0, 0), 0);
+		al_draw_rectangle(round(obj.x - obj.collisionw / 2), round(obj.y - obj.collisionh / 2),
+			round(obj.x + obj.collisionw / 2) + 1, round(obj.y + obj.collisionh / 2) + 1, al_map_rgb(255, 0, 0), 0);
 	}
 }
 
@@ -193,21 +356,27 @@ static void draw(void) {
 	for (j = 0; j < BULLET_TYPES; j++)
 		for (i = 0; i < MAX_BULLET; i++)
 			draw_movable_object(bullets[j][i].Data);
-	draw_movable_object(Myplane);
-	if (is_failed) {
-		//al_draw_filled_rectangle(0, 0, SCREEN_W, SCREEN_H, al_map_rgba(64, 64, 64, 200));
-		al_draw_text(font_pirulen_32, al_map_rgb(255, 0, 0), SCREEN_W / 2 - 100, SCREEN_H / 2 - 150, 0, "DEFEAT");
-	}else if(is_winned)
-		al_draw_text(font_pirulen_32, al_map_rgb(0, 0, 255), SCREEN_W / 2 - 100, SCREEN_H / 2 - 150, 0, "VICTORY");
-
+	drawplane(&Myplane);
+	
 	for (j = 0; j < ENEMY_TYPES; j++) {
 		for (i = 0; i < MAX_ENEMY; i++) {
 			drawplane(&enemy_plane[j][i]);
 		}
 	}
+	if (is_bossing) {
+		drawplane(&BOSS);
+		//for (int i = 0; i < BOSS_SKILL_NUM; i++)
+			//drawplane(&boss_skill_plane[i]);
+		if (BOSS.health > 0) {
+			float BH = BOSS_HEALTH;
+		    al_draw_filled_rectangle(200, 10, 200  +  800 * BOSS.health / BH , 35,al_map_rgb(255,0,0));
+			al_draw_rectangle(195, 5, 1005, 40, al_map_rgb(0, 0, 102), 10);
+		}
+	}
 
 	drawSelfHealth();
-	drawSCORE();
+	if(!is_winned && !is_failed)
+		drawSCORE();
 	if (is_pausing || is_failed || is_winned) {
 		al_draw_filled_rectangle(0, 0, SCREEN_W, SCREEN_H, al_map_rgba(64, 64, 64, 200));
 		al_draw_filled_rectangle(btMenuArea.x, btMenuArea.y, btMenuArea.x2, btMenuArea.y2, al_map_rgb(51, 51, 255));
@@ -215,6 +384,12 @@ static void draw(void) {
 		al_draw_filled_rectangle(btRestartArea.x, btRestartArea.y, btRestartArea.x2, btRestartArea.y2, al_map_rgb(54, 23, 167));
 		al_draw_text(font_pirulen_24, al_map_rgb(132, 54, 34), btRestartArea.x + 25, btRestartArea.y + 5, 0, "Restart");
 	}
+	if (is_failed) {
+		//al_draw_filled_rectangle(0, 0, SCREEN_W, SCREEN_H, al_map_rgba(64, 64, 64, 200));
+		al_draw_text(font_pirulen_32, al_map_rgb(255, 0, 0), SCREEN_W / 2 - 100, SCREEN_H / 2 - 150, 0, "DEFEAT");
+	}
+	else if (is_winned)
+		al_draw_text(font_pirulen_32, al_map_rgb(0, 0, 255), SCREEN_W / 2 - 100, SCREEN_H / 2 - 150, 0, "VICTORY");
 
 		if (pnt_in_rect(mouse_x, mouse_y, buttonArea)) {
 			if (is_pausing)
@@ -230,9 +405,19 @@ static void draw(void) {
 				if(!is_failed && !is_winned)
 				al_draw_scaled_bitmap(pause_button2, 0, 0, buttonWidth, buttonHeight, buttonArea.x, buttonArea.y, buttonArea.w, buttonArea.h, 0);
 		}
-	
-
+		if (is_winned || is_failed) {
+			al_draw_textf(font_pirulen_24, al_map_rgb(0, 0, 0), 200, 200, 0, "Your Score: %d", SCORE);
+			if (renew) {
+				FILE* tmp;
+				tmp = fopen("Record/score_record.txt", "a+");
+				fprintf(tmp, " %d", SCORE);
+				fclose(tmp);
+				renew_Record();
+				renew = false;
+			}
+		} 
 }
+
 
 static void destroy(void) {
 	al_destroy_bitmap(img_background);
@@ -246,9 +431,16 @@ static void destroy(void) {
 	al_destroy_bitmap(continue_button2);
 	al_destroy_bitmap(pausing_cover);
 	al_destroy_sample(bgm);
+	al_destroy_bitmap(originBitmap);
+	al_destroy_bitmap(BOSS_img);
+	al_destroy_sample(fireball);
+	al_destroy_sample(fightingBGM);
+	al_destroy_sample(BossBGM);
+	al_destroy_sample(winningBGM);
+	al_destroy_sample(defeatBGM);
 
 	//  Destroy your bullet image.
-	stop_bgm(bgm_id);
+	stop_bgm(BGM);
 	game_log("Start scene destroyed");
 }
 static void update_BG_area(RecArea* bg) {
@@ -267,6 +459,9 @@ static void update_BG_area(RecArea* bg) {
 static void on_key_down(int keycode) {
 	if (keycode == ALLEGRO_KEY_TAB)
 		draw_gizmos = !draw_gizmos;
+	/*if (is_winned) {
+		
+	}*/
 }
 static void on_mouse_down(int btn, int x, int y, int dz) {
 	if (btn == 1) {
@@ -292,55 +487,9 @@ static void on_mouse_down(int btn, int x, int y, int dz) {
 	}
 }
 // TODO: Add more event callback functions such as keyboard, mouse, ...
-bool MovableObjectCollision(MovableObject target1, MovableObject target2) {
-	if (target1.hidden || target2.hidden)
-		return false;
-	Area Area1;
-	Area1.left = target1.x - target1.w / 2;
-	Area1.right = target1.x + target1.w / 2;
-	Area1.top = target1.y - target1.h / 2;
-	Area1.bottom = target1.y + target1.h / 2;
-	Area Area2;
-	Area2.left = target2.x - target2.w / 2;
-	Area2.right = target2.x + target2.w / 2;
-	Area2.top = target2.y - target2.h / 2;
-	Area2.bottom = target2.y + target2.h / 2;
 
-	if (Area1.bottom < Area2.top ||
-		Area1.top > Area2.bottom ||
-		Area1.right < Area2.left ||
-		Area1.left > Area2.right)
-	{
-		// no collision
-		return false;
-	}
-	return true;
-}
 
-void buildplane(planeObject* plane,
-	ALLEGRO_BITMAP* img,
-	float bspeedx,
-	float bspeedy,
-	float shootcool) {
-	plane->Data.img = img;
-	plane->Data.w = al_get_bitmap_width(plane->Data.img) / 3;
-	plane->Data.h = al_get_bitmap_height(plane->Data.img) / 4;
-	plane->Data.x = plane->Data.w / 2 + (float)rand() / RAND_MAX * (SCREEN_W - plane->Data.w);
-	plane->Data.y = 80;
-	plane->Data.hidden = false;
-	plane->health = 100.0f;
-	plane->movementTimer = 0.0f;
-	plane->animationTimer = 0.0f;
-	plane->animationCounter = 0;
-	plane->direct = 0;
-	plane->sourceX = 0;
-	plane->sourceY = 0;
-	plane->shootingTimer = 0.0f;
-	plane->shootingCoolDown = shootcool;
-	plane->shootingBulletType = 0;
-	plane->prize = 10;
-	//game_log("BUILD plane successful %p", plane);
-}
+
 
 void drawplane(planeObject* plane) {
 	if (plane->Data.hidden)
@@ -350,32 +499,45 @@ void drawplane(planeObject* plane) {
 		plane->sourceY * plane->Data.h,
 		plane->Data.w,
 		plane->Data.h,
-		plane->Data.x,
-		plane->Data.y,
+		plane->Data.x - plane->Data.w/2,
+		plane->Data.y - plane->Data.h/2,
 		0);
+	al_draw_tinted_bitmap_region(plane->Data.img,al_map_rgba(0,0,0,50),
+		plane->sourceX * plane->Data.w,
+		plane->sourceY * plane->Data.h,
+		plane->Data.w,
+		plane->Data.h,
+		plane->Data.x - plane->Data.w / 2 + 50,
+		plane->Data.y - plane->Data.h / 2 + 50,
+		0);
+	if (draw_gizmos) {
+		MovableObject obj = plane->Data;
+		al_draw_rectangle(round(obj.x - obj.collisionw / 2), round(obj.y - obj.collisionh / 2),
+			round(obj.x + obj.collisionw / 2) + 1, round(obj.y + obj.collisionh / 2) + 1, al_map_rgb(255, 0, 0), 0);
+	}
 }
 void selfBounderCheck() {
 	// Limit the plane's collision box inside the frame.
-	if (Myplane.x < 0 + Myplane.h / 2)
-		Myplane.x = Myplane.w / 2;
-	else if (Myplane.x > (SCREEN_W - Myplane.w / 2))
-		Myplane.x = SCREEN_W - Myplane.w / 2;
-	if (Myplane.y < 0 + Myplane.h / 2)
-		Myplane.y = Myplane.h / 2;
-	else if (Myplane.y > (SCREEN_H - Myplane.h / 2))
-		Myplane.y = SCREEN_H - Myplane.h / 2;
+	if (Myplane.Data.x < 0 + Myplane.Data.w / 2)
+		Myplane.Data.x = Myplane.Data.w / 2;
+	else if (Myplane.Data.x > (SCREEN_W - Myplane.Data.w / 2))
+		Myplane.Data.x = SCREEN_W - Myplane.Data.w / 2;
+	if (Myplane.Data.y < 0 + Myplane.Data.h / 2)
+		Myplane.Data.y = Myplane.Data.h / 2;
+	else if (Myplane.Data.y > (SCREEN_H - Myplane.Data.h / 2))
+		Myplane.Data.y = SCREEN_H - Myplane.Data.h / 2;
 }
 
-void movOjBounederCheck(MovableObject* MoBj) {
-	if (MoBj->x < 0 - 100 || MoBj->x > SCREEN_W + 100 || MoBj->y < 0 - 100 || MoBj->y > SCREEN_H + 100)
-		MoBj->hidden = true;
-}
 void drawSelfHealth() {
-	if (MyHealth > 0)
-		al_draw_filled_rectangle(10, SCREEN_H - 40, 10 + (200 / 100) * MyHealth, SCREEN_H - 10, al_map_rgb(51, 255, 51));
+	if (Myplane.health > 0) {
+		al_draw_filled_rectangle(10, SCREEN_H - 40, 10 + 300  *  Myplane.health / health, SCREEN_H - 10, al_map_rgb(51, 255, 51));
+		al_draw_rectangle(15, SCREEN_H - 35, 15 +  300, SCREEN_H - 5, al_map_rgb(51, 0, 102),10);
+
+	}
+	
 }
 void drawSCORE() {
-	al_draw_textf(font_pirulen_32, al_map_rgb(127, 0, 255), SCREEN_W - 50, 10, 0, "%d", SCORE);
+	al_draw_textf(font_pirulen_32, al_map_rgb(127, 0, 255), SCREEN_W -150, 10, 0, "%d", SCORE);
 }
 void all_bullet_planes_collision_check() {
 	for (int j = 0; j < BULLET_TYPES; j++) {
@@ -390,13 +552,26 @@ void all_bullet_planes_collision_check() {
 						if (MovableObjectCollision(bullets[j][i].Data, enemy_plane[k][q].Data)) {
 							enemy_plane[k][q].health -= bullets[j][i].damage;
 							bullets[j][i].Data.hidden = true;
+							/*al_draw_tinted_bitmap_region(enemy_plane[k][q].Data.img, al_map_rgba(255, 0, 0, 100),
+								enemy_plane[k][q].sourceX * enemy_plane[k][q].Data.w,
+								enemy_plane[k][q].sourceY * enemy_plane[k][q].Data.h,
+								enemy_plane[k][q].Data.w,
+								enemy_plane[k][q].Data.h,
+								enemy_plane[k][q].Data.x - enemy_plane[k][q].Data.w / 2,
+								enemy_plane[k][q].Data.y - enemy_plane[k][q].Data.h / 2,
+								0);*/
 						}
 					}
 				}
+				if (MovableObjectCollision(bullets[j][i].Data, BOSS.Data)) {
+					BOSS.health -= bullets[j][i].damage;
+					game_log("%f", BOSS.health);
+					bullets[j][i].Data.hidden = true;
+				}
 			}
 			else {
-				if (MovableObjectCollision(bullets[j][i].Data, Myplane)) {
-					MyHealth -= bullets[j][i].damage;
+				if (MovableObjectCollision(bullets[j][i].Data, Myplane.Data)) {
+					Myplane.health -= bullets[j][i].damage;
 					bullets[j][i].Data.hidden = true;
 				}
 			}

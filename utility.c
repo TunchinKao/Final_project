@@ -8,6 +8,30 @@
 #include <allegro5/allegro_audio.h>
 #include "game.h"
 float VOLUME = 1.0;
+int MydraIndex;
+char characterlist[8][2][40] = {
+	{"Character/doragon/dora01.png","Character/doragon/dora01Armer.png"},
+	{"Character/doragon/dora02.png","Character/doragon/dora02Armer.png"},
+	{"Character/doragon/dora03.png","Character/doragon/dora03Armer.png"},
+	{"Character/doragon/dora04.png","Character/doragon/dora04Armer.png"},
+	{"Character/doragon/dora05.png","Character/doragon/dora05Armer.png"},
+	{"Character/doragon/dora06.png","Character/doragon/dora06Armer.png"},
+	{"Character/doragon/dora07.png","Character/doragon/dora07Armer.png"},
+	{"Character/doragon/dora08.png","Characterdoragon//dora08Armer.png"},
+};
+
+char enemylist[4][40] = {
+	"Character/insect/insector01.png",
+	"Character/insect/insector02.png",
+	"Character/insect/insector03.png",
+	"Character/insect/insector04.png",
+};
+char bulletImglist[4][40] = {
+	"BulletImage/image12.png",
+	"BulletImage/enemybullet.png",
+	"BulletImage/enemybullet2.png",
+	"BulletImage/BossBullet.png",
+};
 ALLEGRO_SAMPLE* load_audio(const char* filename) {
 	ALLEGRO_SAMPLE* sample = al_load_sample(filename);
 	if (!sample)
@@ -22,7 +46,7 @@ ALLEGRO_SAMPLE_ID play_audio(ALLEGRO_SAMPLE* sample, float volume) {
 	if (!al_play_sample(sample, volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, &id))
 		game_abort("failed to play audio (once)");
 	else
-		game_log("played audio (once)");
+		//game_log("played audio (once)");
 	return id;
 }
 
@@ -31,7 +55,7 @@ ALLEGRO_SAMPLE_ID play_bgm(ALLEGRO_SAMPLE* sample, float volume) {
 	if (!al_play_sample(sample, volume, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, &id))
 		game_abort("failed to play audio (bgm)");
 	else
-		game_log("played audio (bgm)");
+		//game_log("played audio (bgm)");
 	return id;
 }
 
@@ -55,7 +79,7 @@ ALLEGRO_BITMAP* load_bitmap(const char* filename) {
 		game_abort("failed to load image: %s", filename);
 	else
 		game_log("loaded image: %s", filename);
-	return bmp;
+	return bmp; 
 }
 
 ALLEGRO_BITMAP *load_bitmap_resized(const char *filename, int w, int h) {

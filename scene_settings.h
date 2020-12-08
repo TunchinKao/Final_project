@@ -15,7 +15,9 @@
 RecArea backArea;
 RecArea volLargeBtnArea;
 RecArea volSmallBtnArea;
-
+RecArea nextImgBtnArea;
+RecArea preImgBtnArea;
+RecArea characterDemoArea;
 // Return a Scene that has function pointers pointing to the
 // functions that will react to the corresponding events.
 static void init();

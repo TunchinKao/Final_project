@@ -42,7 +42,10 @@
     <ClCompile Include="planescript.c">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="scene_scordboard.c">
+    <ClCompile Include="scene_scoreboard.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="object.c">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,8 +71,11 @@
     <ClInclude Include="planescript.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="scene_scordboard.h">
+    <ClInclude Include="scene_scoreboard.h">
       <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>來源檔案</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

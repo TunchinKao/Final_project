@@ -154,21 +154,23 @@
   <ItemGroup>
     <ClCompile Include="game.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="object.c" />
     <ClCompile Include="planescript.c" />
     <ClCompile Include="scene_menu.c" />
     <ClCompile Include="scene_settings.c" />
     <ClCompile Include="scene_start.c" />
-    <ClCompile Include="scene_scordboard.c" />
+    <ClCompile Include="scene_scoreboard.c" />
     <ClCompile Include="shared.c" />
     <ClCompile Include="utility.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="planescript.h" />
     <ClInclude Include="scene_menu.h" />
     <ClInclude Include="scene_settings.h" />
     <ClInclude Include="scene_start.h" />
-    <ClInclude Include="scene_scordboard.h" />
+    <ClInclude Include="scene_scoreboard.h" />
     <ClInclude Include="shared.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>

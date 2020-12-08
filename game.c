@@ -13,8 +13,8 @@
 
 /* Shared variables. */
 const int FPS = 60;
-const int SCREEN_W = 800;
-const int SCREEN_H = 600;
+const int SCREEN_W = 1200;
+const int SCREEN_H = 800;
 const int RESERVE_SAMPLES = 4;
 Scene active_scene;
 bool key_state[ALLEGRO_KEY_MAX];
@@ -142,7 +142,7 @@ static void game_start_event_loop(void) {
 				redraws++;
 		} else if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
 			// Event for keyboard key down.
-			game_log("Key with keycode %d down", event.keyboard.keycode);
+			//game_log("Key with keycode %d down", event.keyboard.keycode);
 			key_state[event.keyboard.keycode] = true;
 			if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE && active_scene.name == "Menu") {
 				game_log("Escape clicked");
@@ -153,19 +153,19 @@ static void game_start_event_loop(void) {
 				(*active_scene.on_key_down)(event.keyboard.keycode);
 		} else if (event.type == ALLEGRO_EVENT_KEY_UP) {
 			// Event for keyboard key up.
-			game_log("Key with keycode %d up", event.keyboard.keycode);
+			//game_log("Key with keycode %d up", event.keyboard.keycode);
 			key_state[event.keyboard.keycode] = false;
 			if (active_scene.on_key_up)
 				(*active_scene.on_key_up)(event.keyboard.keycode);
 		} else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
 			// Event for mouse key down.
-			game_log("Mouse button %d down at (%d, %d)", event.mouse.button, event.mouse.x, event.mouse.y);
+			//game_log("Mouse button %d down at (%d, %d)", event.mouse.button, event.mouse.x, event.mouse.y);
 			mouse_state[event.mouse.button] = true;
 			if (active_scene.on_mouse_down)
 				(*active_scene.on_mouse_down)(event.mouse.button, event.mouse.x, event.mouse.y, 0);
 		} else if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
 			// Event for mouse key up.
-			game_log("Mouse button %d up at (%d, %d)", event.mouse.button, event.mouse.x, event.mouse.y);
+			//game_log("Mouse button %d up at (%d, %d)", event.mouse.button, event.mouse.x, event.mouse.y);
 			mouse_state[event.mouse.button] = false;
 			if (active_scene.on_mouse_up)
 				(*active_scene.on_mouse_up)(event.mouse.button, event.mouse.x, event.mouse.y, 0);
@@ -179,7 +179,7 @@ static void game_start_event_loop(void) {
 					(*active_scene.on_mouse_move)(0, event.mouse.x, event.mouse.y, 0);
 			} else if (event.mouse.dz != 0) {
 				// Event for mouse scroll.
-				game_log("Mouse scroll at (%d, %d) with delta %d", event.mouse.x, event.mouse.y, event.mouse.dz);
+				//game_log("Mouse scroll at (%d, %d) with delta %d", event.mouse.x, event.mouse.y, event.mouse.dz);
 				if (active_scene.on_mouse_scroll)
 					(*active_scene.on_mouse_scroll)(0, event.mouse.x, event.mouse.y, event.mouse.dz);
 			}
