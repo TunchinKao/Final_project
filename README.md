@@ -1,4 +1,4 @@
 # Final_project
 final limit test
-I2P-I Final Allegro Project
+Introduction-to-Programming Final Allegro Project
 A small 2D shooting game
