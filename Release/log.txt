@@ -11,6 +11,31 @@ loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
 Menu scene initialized
 Game initialized
 Game start event loop
+start scene created
+Change scene from Menu to scoreboard
+stop audio (bgm)
+Menu scene destroyed
+1359
+1121
+1050
+989
+856
+855
+783
+743
+200
+170
+loaded image: images/background.png
+loaded image: images/background.png
+resized image: images/background.png
+loaded audio: Music/Bgm/scoreBGM.ogg
+Menu scene created
+Change scene from scoreboard to Menu
+stop audio (bgm)
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
 Start scene created
 Change scene from Menu to Start
 stop audio (bgm)
@@ -34,17 +59,859 @@ loaded audio: Music/Bgm/DeathBGM.ogg
 loaded audio: Music/soundEffect/Fireball/fireball_1_fixed.ogg
 Start scene initialized
 stop audio (bgm)
-initialising Timer for 001597B8
-initialising Timer for 0015980C
-initialising Timer for 00159860
-initialising Timer for 001598B4
-initialising Timer for 00159908
-initialising Timer for 0015995C
-initialising Timer for 001599B0
-initialising Timer for 00159A04
-initialising Timer for 00159A58
-initialising Timer for 00159AAC
+initialising Timer for 001B97B8
+initialising Timer for 001B980C
+initialising Timer for 001B9860
+initialising Timer for 001B98B4
+initialising Timer for 001B9908
+initialising Timer for 001B995C
+initialising Timer for 001B99B0
+initialising Timer for 001B9A04
+initialising Timer for 001B9A58
+initialising Timer for 001B9AAC
+stop audio (bgm)
+1359
+1121
+1050
+989
+856
+855
+783
+743
+200
+170
+Start scene created
+Change scene from Start to Start
+stop audio (bgm)
+Start scene destroyed
+loaded image: MapImage/linktothepast.jpg
+loaded image: MapImage/linktothepast.jpg
+resized image: MapImage/linktothepast.jpg
+loaded image: GUI/pause-button.png
+loaded image: GUI/play-button.png
+loaded image: GUI/pause-button2.png
+loaded image: GUI/play-button2.png
+loaded image: Character/doragon/dora01.png
+loaded image: Character/doragon/dora01Armer.png
+resized image: Character/doragon/dora01Armer.png
+loaded image: Character/insect/insector04.png
+loaded image: Character/insect/insector02.png
+loaded audio: Music/Bgm/FightingBGM.ogg
+loaded audio: Music/Bgm/BossBGM.ogg
+loaded audio: Music/Bgm/winningBgm.ogg
+loaded audio: Music/Bgm/DeathBGM.ogg
+loaded audio: Music/soundEffect/Fireball/fireball_1_fixed.ogg
+Start scene initialized
+stop audio (bgm)
+initialising Timer for 001B97B8
+initialising Timer for 001B980C
+initialising Timer for 001B9860
+initialising Timer for 001B98B4
+initialising Timer for 001B9908
+initialising Timer for 001B995C
+initialising Timer for 001B99B0
+initialising Timer for 001B9A04
+initialising Timer for 001B9A58
+initialising Timer for 001B9AAC
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+initialising Timer for 001C7F20
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+490.000000
+480.000000
+stop audio (bgm)
+470.000000
+460.000000
+stop audio (bgm)
+stop audio (bgm)
+450.000000
+440.000000
+stop audio (bgm)
+430.000000
+420.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+410.000000
+400.000000
+stop audio (bgm)
+stop audio (bgm)
+390.000000
+380.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+370.000000
+stop audio (bgm)
+360.000000
+350.000000
+stop audio (bgm)
+340.000000
+stop audio (bgm)
+330.000000
+stop audio (bgm)
+320.000000
+stop audio (bgm)
+310.000000
+300.000000
+stop audio (bgm)
+290.000000
+280.000000
+stop audio (bgm)
+270.000000
+260.000000
+stop audio (bgm)
+250.000000
+stop audio (bgm)
+240.000000
+230.000000
+stop audio (bgm)
+220.000000
+stop audio (bgm)
+stop audio (bgm)
+210.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+200.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+190.000000
+stop audio (bgm)
+180.000000
+stop audio (bgm)
+170.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+160.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+150.000000
+stop audio (bgm)
+140.000000
+stop audio (bgm)
+130.000000
+120.000000
+110.000000
+stop audio (bgm)
+100.000000
+90.000000
+stop audio (bgm)
+80.000000
+70.000000
+stop audio (bgm)
+60.000000
+50.000000
+40.000000
+stop audio (bgm)
+30.000000
+20.000000
+10.000000
+stop audio (bgm)
+0.000000
+stop audio (bgm)
+stop audio (bgm)
+1359
+1121
+1108
+1050
+989
+856
+855
+783
+743
+200
+stop audio (bgm)
+stop audio (bgm)
+Menu scene created
+Change scene from Start to Menu
+stop audio (bgm)
+Start scene destroyed
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
+Settings scene created
+Change scene from Menu to setting
+stop audio (bgm)
+Menu scene destroyed
+loaded font: pirulen.ttf with size 32
+loaded image: UIImage/vollarger.png
+resized image: UIImage/vollarger.png
+loaded image: UIImage/volsmaller.png
+resized image: UIImage/volsmaller.png
+loaded image: UIImage/fast-forward-button.png
+resized image: UIImage/fast-forward-button.png
+loaded image: UIImage/fast-backward-button.png
+resized image: UIImage/fast-backward-button.png
+Menu scene created
+Change scene from setting to Menu
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
+Start scene created
+Change scene from Menu to Start
+stop audio (bgm)
+Menu scene destroyed
+loaded image: MapImage/linktothepast.jpg
+loaded image: MapImage/linktothepast.jpg
+resized image: MapImage/linktothepast.jpg
+loaded image: GUI/pause-button.png
+loaded image: GUI/play-button.png
+loaded image: GUI/pause-button2.png
+loaded image: GUI/play-button2.png
+loaded image: Character/doragon/dora04.png
+loaded image: Character/doragon/dora04Armer.png
+resized image: Character/doragon/dora04Armer.png
+loaded image: Character/insect/insector04.png
+loaded image: Character/insect/insector02.png
+loaded audio: Music/Bgm/FightingBGM.ogg
+loaded audio: Music/Bgm/BossBGM.ogg
+loaded audio: Music/Bgm/winningBgm.ogg
+loaded audio: Music/Bgm/DeathBGM.ogg
+loaded audio: Music/soundEffect/Fireball/fireball_1_fixed.ogg
+Start scene initialized
+stop audio (bgm)
+initialising Timer for 001B97B8
+initialising Timer for 001B980C
+initialising Timer for 001B9860
+initialising Timer for 001B98B4
+initialising Timer for 001B9908
+initialising Timer for 001B995C
+initialising Timer for 001B99B0
+initialising Timer for 001B9A04
+initialising Timer for 001B9A58
+initialising Timer for 001B9AAC
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+initialising Timer for 001C7F20
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+490.000000
+stop audio (bgm)
+480.000000
+470.000000
+460.000000
+stop audio (bgm)
+450.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+440.000000
+stop audio (bgm)
+430.000000
+stop audio (bgm)
+420.000000
+410.000000
+stop audio (bgm)
+stop audio (bgm)
+400.000000
+stop audio (bgm)
+390.000000
+stop audio (bgm)
+380.000000
+370.000000
+stop audio (bgm)
+360.000000
+stop audio (bgm)
+350.000000
+340.000000
+stop audio (bgm)
+330.000000
+stop audio (bgm)
+320.000000
+stop audio (bgm)
+310.000000
+300.000000
+stop audio (bgm)
+290.000000
+280.000000
+270.000000
+stop audio (bgm)
+260.000000
+250.000000
+stop audio (bgm)
+240.000000
+230.000000
+stop audio (bgm)
+220.000000
+210.000000
+stop audio (bgm)
+200.000000
+190.000000
+stop audio (bgm)
+180.000000
+170.000000
+160.000000
+stop audio (bgm)
+stop audio (bgm)
+150.000000
+stop audio (bgm)
+140.000000
+stop audio (bgm)
+130.000000
+stop audio (bgm)
+stop audio (bgm)
+120.000000
+stop audio (bgm)
+110.000000
+stop audio (bgm)
+100.000000
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+90.000000
+80.000000
+stop audio (bgm)
+70.000000
+60.000000
+stop audio (bgm)
+50.000000
+40.000000
+stop audio (bgm)
+30.000000
+20.000000
+stop audio (bgm)
+10.000000
+0.000000
+stop audio (bgm)
+stop audio (bgm)
+1359
+1244
+1121
+1108
+1050
+989
+856
+855
+783
+743
+stop audio (bgm)
+stop audio (bgm)
+stop audio (bgm)
+Menu scene created
+Change scene from Start to Menu
+stop audio (bgm)
+Start scene destroyed
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
+Settings scene created
+Change scene from Menu to setting
+stop audio (bgm)
+Menu scene destroyed
+loaded font: pirulen.ttf with size 32
+loaded image: UIImage/vollarger.png
+resized image: UIImage/vollarger.png
+loaded image: UIImage/volsmaller.png
+resized image: UIImage/volsmaller.png
+loaded image: UIImage/fast-forward-button.png
+resized image: UIImage/fast-forward-button.png
+loaded image: UIImage/fast-backward-button.png
+resized image: UIImage/fast-backward-button.png
+Menu scene created
+Change scene from setting to Menu
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
 Window close button clicked
 Game end
 stop audio (bgm)
-Start scene destroyed
+Menu scene destroyed

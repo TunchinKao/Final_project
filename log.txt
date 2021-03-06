@@ -11,3 +11,32 @@ loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
 Menu scene initialized
 Game initialized
 Game start event loop
+start scene created
+Change scene from Menu to scoreboard
+stop audio (bgm)
+Menu scene destroyed
+1359
+1121
+1050
+989
+856
+855
+783
+743
+200
+170
+loaded image: images/background.png
+loaded image: images/background.png
+resized image: images/background.png
+loaded audio: Music/Bgm/scoreBGM.ogg
+Menu scene created
+Change scene from scoreboard to Menu
+stop audio (bgm)
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
+Window close button clicked
+Game end
+stop audio (bgm)
+Menu scene destroyed

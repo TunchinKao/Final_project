@@ -36,7 +36,7 @@ static void init(void) {
 	sourceX = 0;
 	sourceY = 0;
 	timer = al_get_time();
-	font_pirulen_26 = load_font("../pirulen.ttf", 32); 
+	font_pirulen_26 = load_font("pirulen.ttf", 32); 
 	nowerId = MydraIndex =  0;
 	createRecArea(&volLargeBtnArea, 600, 270, 100, 100);
 	createRecArea(&volSmallBtnArea, 400, 270, 100, 100);
