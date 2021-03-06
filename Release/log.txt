@@ -1,0 +1,50 @@
+There are total 5 supported mouse buttons
+Allegro5 initialized
+Game begin
+loaded font: pirulen.ttf with size 32
+loaded font: pirulen.ttf with size 24
+Menu scene created
+Change scene from (unnamed) to Menu
+loaded image: images/menu_background.png
+resized image: images/menu_background.png
+loaded audio: Music/Bgm/Dragon_and_Toast_ok.ogg
+Menu scene initialized
+Game initialized
+Game start event loop
+Start scene created
+Change scene from Menu to Start
+stop audio (bgm)
+Menu scene destroyed
+loaded image: MapImage/linktothepast.jpg
+loaded image: MapImage/linktothepast.jpg
+resized image: MapImage/linktothepast.jpg
+loaded image: GUI/pause-button.png
+loaded image: GUI/play-button.png
+loaded image: GUI/pause-button2.png
+loaded image: GUI/play-button2.png
+loaded image: Character/doragon/dora01.png
+loaded image: Character/doragon/dora01Armer.png
+resized image: Character/doragon/dora01Armer.png
+loaded image: Character/insect/insector04.png
+loaded image: Character/insect/insector02.png
+loaded audio: Music/Bgm/FightingBGM.ogg
+loaded audio: Music/Bgm/BossBGM.ogg
+loaded audio: Music/Bgm/winningBgm.ogg
+loaded audio: Music/Bgm/DeathBGM.ogg
+loaded audio: Music/soundEffect/Fireball/fireball_1_fixed.ogg
+Start scene initialized
+stop audio (bgm)
+initialising Timer for 001597B8
+initialising Timer for 0015980C
+initialising Timer for 00159860
+initialising Timer for 001598B4
+initialising Timer for 00159908
+initialising Timer for 0015995C
+initialising Timer for 001599B0
+initialising Timer for 00159A04
+initialising Timer for 00159A58
+initialising Timer for 00159AAC
+Window close button clicked
+Game end
+stop audio (bgm)
+Start scene destroyed

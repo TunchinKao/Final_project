@@ -1,0 +1,18 @@
+﻿game.obj : error LNK2001: 無法解析的外部符號 __imp_al_init_image_addon
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_init_ttf_addon
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_init_font_addon
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_install_audio
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_init_primitives_addon
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_reserve_samples
+game.obj : error LNK2001: 無法解析的外部符號 __imp_al_init_acodec_addon
+scene_menu.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_text
+scene_menu.obj : error LNK2001: 無法解析的外部符號 __imp_al_destroy_sample
+scene_menu.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_filled_rectangle
+scene_scoreboard.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_textf
+scene_settings.obj : error LNK2001: 無法解析的外部符號 __imp_al_destroy_font
+scene_start.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_rectangle
+utility.obj : error LNK2001: 無法解析的外部符號 __imp_al_stop_sample
+utility.obj : error LNK2001: 無法解析的外部符號 __imp_al_play_sample
+utility.obj : error LNK2001: 無法解析的外部符號 __imp_al_load_sample
+utility.obj : error LNK2001: 無法解析的外部符號 __imp_al_load_font
+D:\Computer_Programming\Allrhto5_Project\Final_Project\x64\Release\Final_Project.exe : fatal error LNK1120: 17 個無法解析的外部符號

@@ -1,0 +1,44 @@
+﻿  game.c
+  main.c
+  object.c
+  planescript.c
+  scene_menu.c
+  scene_scoreboard.c
+D:\Computer_Programming\Allrhto5_Project\Final_Project\src\scene_scoreboard.c(84,26): warning C4113: 'void (__cdecl *)()' 與來自 'func_ptr' 的參數清單不同
+D:\Computer_Programming\Allrhto5_Project\Final_Project\src\scene_scoreboard.c(85,20): warning C4113: 'void (__cdecl *)()' 與來自 'func_ptr' 的參數清單不同
+  scene_settings.c
+  scene_start.c
+  shared.c
+  utility.c
+  正在產生程式碼...
+D:\Computer_Programming\Allrhto5_Project\Final_Project\src\utility.c(51): warning C4715: 'play_audio': 不是所有控制路徑都傳回值
+D:\Computer_Programming\Allrhto5_Project\Final_Project\src\utility.c(60): warning C4715: 'play_bgm': 不是所有控制路徑都傳回值
+game.obj : error LNK2019: 在函式 __imp_al_init_primitives_addonallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_init_image_addonallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_init_font_addonallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_init_ttf_addonallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_install_audioallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_reserve_samplesallegro5_init 中參考了無法解析的外部符號
+game.obj : error LNK2019: 在函式 __imp_al_init_acodec_addonallegro5_init 中參考了無法解析的外部符號
+scene_menu.obj : error LNK2019: 在函式 __imp_al_draw_filled_rectangledraw 中參考了無法解析的外部符號
+scene_scoreboard.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_filled_rectangle
+scene_settings.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_filled_rectangle
+scene_start.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_filled_rectangle
+scene_menu.obj : error LNK2019: 在函式 __imp_al_draw_textdraw 中參考了無法解析的外部符號
+scene_scoreboard.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_text
+scene_settings.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_text
+scene_start.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_text
+scene_menu.obj : error LNK2019: 在函式 __imp_al_destroy_sampledestroy 中參考了無法解析的外部符號
+scene_scoreboard.obj : error LNK2001: 無法解析的外部符號 __imp_al_destroy_sample
+scene_start.obj : error LNK2001: 無法解析的外部符號 __imp_al_destroy_sample
+scene_scoreboard.obj : error LNK2019: 在函式 __imp_al_draw_textfdraw 中參考了無法解析的外部符號
+scene_settings.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_textf
+scene_start.obj : error LNK2001: 無法解析的外部符號 __imp_al_draw_textf
+scene_settings.obj : error LNK2019: 在函式 __imp_al_destroy_fontdestroy 中參考了無法解析的外部符號
+shared.obj : error LNK2001: 無法解析的外部符號 __imp_al_destroy_font
+scene_start.obj : error LNK2019: 在函式 __imp_al_draw_rectangledraw 中參考了無法解析的外部符號
+utility.obj : error LNK2019: 在函式 __imp_al_load_fontload_font 中參考了無法解析的外部符號
+utility.obj : error LNK2019: 在函式 __imp_al_play_sampleplay_audio 中參考了無法解析的外部符號
+utility.obj : error LNK2019: 在函式 __imp_al_stop_samplestop_bgm 中參考了無法解析的外部符號
+utility.obj : error LNK2019: 在函式 __imp_al_load_sampleload_audio 中參考了無法解析的外部符號
+D:\Computer_Programming\Allrhto5_Project\Final_Project\x64\Debug\Final_Project.exe : fatal error LNK1120: 17 個無法解析的外部符號
